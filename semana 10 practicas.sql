@@ -1,0 +1,15 @@
+﻿SELECT 
+  cliente.cus_code, 
+  invoice.cus_code, 
+  vendor.v_code, 
+  product.v_code, 
+  line.p_code, 
+  product.p_code, 
+  invoice.inv_number, 
+  line.inv_number
+FROM 
+  public.cliente, 
+  public.invoice, 
+  public.line, 
+  public.product, 
+  public.vendor;
