@@ -37,14 +37,7 @@ select
 where
     account_move.name='INV/2020/0004' and account_move_line.product_id IS NOT NULL
 
-
-
-
 -----------------------
-
-
-
-
 
 SELECT res_company.name as Compañia,
 (select res_partner.street from res_partner where res_partner.name = res_company.name) as Direccion_Compañia,
@@ -69,15 +62,7 @@ INNER JOIN account_move_line ON account_move_line.move_id = account_move.id
 INNER JOIN account_payment_term ON  account_payment_term.id = account_move.invoice_payment_term_id
 where account_move.name = 'FACTURA/2020/0001' AND account_move_line.product_id IS NOT NULL
 
-
-
-
-
-
-
-
 --------------------
-
 
 SELECT 
   product_template.name AS Nombre_Producto,
