@@ -1,0 +1,32 @@
+-------------------------------------
+-------MENDOZA ALCIVAR ALEJANDRO-----
+---------------CUARTO A--------------
+------------FACTURA DE VENTA --------
+-------------------------------------
+
+select distinct
+    res_company.name AS EMPRESA,    
+    account_move.invoice_partner_display_name AS PROVEEDOR,
+    account_move.name AS FACTURA,
+    account_move_line.name AS DESCRIPCION,
+    product_category.name AS CATEGORIA,
+    account_move_line.quantity AS CANTIDAD,
+    account_move_line.price_unit AS PRECIO_UNI,
+    account_tax.description as IMPUESTO,
+    account_move_line.credit AS IMPORTE,
+    account_payment_term.name AS PLAZO_PAGO,
+    res_company.email AS EMAIL
+from
+    account_move
+    inner join res_partner ON account_move.partner_id = res_partner.id
+    inner join res_company ON res_partner.company_id = res_company.id
+    inner join account_tax on account_tax.company_id = res_company.id
+    inner join account_move_line ON account_move.id = account_move_line.move_id
+    inner join account_payment_term ON account_move.invoice_payment_term_id=account_payment_term.id 
+    inner join public.product_product on  product_product.id = account_move_line.product_id
+    inner join public.product_template on product_template.id = product_product.product_tmpl_id
+    inner join product_category on product_category.id = product_template.categ_id
+where
+	account_move.name = 'INV/2021/0001'
+	and  account_move_line.account_root_id=55049 
+	and account_tax.description= 'IVA Cobrado 12%'

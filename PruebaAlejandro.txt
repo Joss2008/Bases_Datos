@@ -1,0 +1,26 @@
+-----------------------------------
+--MENDOZA ALCIVAR ALEJANDRO--------
+--BASE DE DATOS -------------------
+-----------------------------------
+  
+  SELECT 
+  res_company.name, 
+  res_partner.name, 
+  purchase_order.name, 
+  purchase_order_line.name, 
+  product_template.name, 
+  purchase_order_line.product_qty, 
+  purchase_order_line.price_unit, 
+  purchase_order_line.price_subtotal, 
+  res_users.login
+FROM public.purchase_order
+INNER JOIN public.res_partner ON  purchase_order.partner_id = res_partner.id
+INNER JOIN public.res_company ON  purchase_order.company_id = res_company.id
+INNER JOIN public.purchase_order_line ON purchase_order_line.order_id = purchase_order.id 
+INNER JOIN  public.product_product ON purchase_order_line.product_id = product_product.id
+INNER JOIN public.product_template ON  product_template.id = product_product.product_tmpl_id
+INNER JOIN public.res_users on res_users.company_id = res_company.id
+WHERE 
+
+  purchase_order.name = 'P00002' AND 
+  res_users.login = 'wzamora@gmail.com'
