@@ -1,0 +1,16 @@
+--FACCI
+--Teconologia de la Informacion
+--Mendoza Alcivar Alejandro 
+--4
+
+SELECT
+res_company.name AS COMPAÑIA, 
+product_product.default_code AS CODIGO,  
+product_template.name AS PRODUCTO, 
+product_template.list_price AS PRECIO
+FROM 
+	product_template
+INNER JOIN res_company on  res_company.id = product_template.company_id
+INNER JOIN product_producton product_template.id = product_product.product_tmpl_id
+WHERE
+ res_company.name = 'ZM SOLUTIONS S.A.'
